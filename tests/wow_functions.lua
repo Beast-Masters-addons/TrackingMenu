@@ -36,17 +36,19 @@ function GetSpellBookItemTexture(slotIndex, _)
     return spellBook[slotIndex][4]
 end
 
-function GetSpellBookItemName(slotIndex, bookType)
+function GetSpellBookItemName(slotIndex, _)
     return spellBook[slotIndex][1], spellBook[slotIndex][2], spellBook[slotIndex][3]
 end
 
 function GetSpellBookItemInfo(index, bookType)
-    local spells = {}
-    spells[42] = {"SPELL", 781}
-    index = 42
-    return spells[index][1], spells[index][2]
+    local spell = spellBook[index]
+    return bookType, spell[3]
 end
 
 function GetTrackingTexture()
     return 135942
+end
+
+function CastSpellByName(spellName)
+    _G['lastSpellName'] = spellName
 end
