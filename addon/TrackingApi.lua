@@ -28,10 +28,6 @@ function TrackingApi:BuildSpellList()
     return self.TrackingSpells
 end
 
-function GetNumTrackingTypes()
-        return TrackingApi.NumTrackingTypes
-end
-
 function TrackingApi:GetCurrentTracking()
     local icon = GetTrackingTexture()
     if not icon then
@@ -71,7 +67,9 @@ function GetTrackingInfo(id)
     return spell['name'], spell['icon'], active, "spell", -1
 end
 
-
+function GetNumTrackingTypes()
+    return TrackingApi.NumTrackingTypes
+end
 
 function SetTracking(id, _)
     local spell = TrackingApi.TrackingSpellsNum[id]
