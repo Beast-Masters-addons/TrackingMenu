@@ -47,23 +47,9 @@ function TrackingApi:IsCurrentTracking(spellId)
     end
 end
 
-function GetTrackingSpellInfo(id)
-    local spell = self.TrackingSpells[id]
-    local _, _, currentId = self:GetCurrentTracking()
-    local active
-    if currentId == id then
-        active = true
-    else
-        active = false
-    end
-
-    return spell['name'], spell['icon'], active
-end
-
 function GetTrackingInfo(id)
     local spell = TrackingApi.TrackingSpellsNum[id]
     local active = TrackingApi:IsCurrentTracking(spell['id'])
-
     return spell['name'], spell['icon'], active, "spell", -1
 end
 
