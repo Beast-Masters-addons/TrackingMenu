@@ -46,7 +46,7 @@ function GetSpellBookItemInfo(index, bookType)
 end
 
 function GetTrackingTexture()
-    return 135942
+    return _G['currentTrackingTexture']
 end
 
 function CastSpellByName(spellName)
