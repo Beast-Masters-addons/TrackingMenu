@@ -1,0 +1,5 @@
+package-as: TrackingMenu
+
+ignore:
+  - tests
+  - FrameXML

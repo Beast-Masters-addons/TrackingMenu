@@ -1,0 +1,12 @@
+## Interface: 11303
+## Version: @project-version@
+## Author: datagutten
+## Title: TrackingMenu
+## Notes: Show tracking menu
+## Dependencies: LibStub
+## SavedVariables: SpellList
+
+addon\TrackingApi.lua
+addon\TrackingMenu.lua
+addon\MiniMapTracking.lua
+addon\MiniMapTracking.xml
