@@ -49,4 +49,10 @@ function test:testGetCurrentTracking()
     lu.assertEquals(spell, 19883)
 end
 
+function test:testIsCurrentTracking()
+    self.TrackingApi:BuildSpellList()
+    _G['currentTrackingTexture'] = 135942
+    lu.assertEquals(self.TrackingApi:IsCurrentTracking(19883), true)
+end
+
 os.exit( lu.LuaUnit.run() )
