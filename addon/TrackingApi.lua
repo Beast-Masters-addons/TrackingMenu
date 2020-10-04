@@ -5,25 +5,36 @@ TrackingApi.TrackingSpells = {}
 TrackingApi.TrackingSpellIcons = {}
 TrackingApi.TrackingSpellsNum = {}
 
-function TrackingApi:BuildSpellList()
+function TrackingApi:BuildSpellList(keywords)
     local count = 0
-    local _, _, offset, numSpells = GetSpellTabInfo(4);
+	local tracked
+	if not keywords then
+		keywords = {'Track', 'Find'}
+	end
+	for tab=1,4 do
+		local _, _, offset, numSpells = GetSpellTabInfo(tab);
 
-    for i = offset + 1, offset + numSpells do
-        local spellIcon = GetSpellBookItemTexture(i, BOOKTYPE_SPELL);
+		for i = offset + 1, offset + numSpells do
+			local spellIcon = GetSpellBookItemTexture(i, BOOKTYPE_SPELL);
 
-        local spellName = GetSpellBookItemName(i, BOOKTYPE_SPELL);
-        local _, spellId = GetSpellBookItemInfo(i, BOOKTYPE_SPELL)
+			local spellName = GetSpellBookItemName(i, BOOKTYPE_SPELL);
+			local _, spellId = GetSpellBookItemInfo(i, BOOKTYPE_SPELL)
 
-        local tracked = spellName:match('Track (%a+)')
+			for _, keyword in ipairs(keywords) do
+				tracked = spellName:match(keyword..' (%a+)')
+				if tracked then
+					break
+				end
+			end
 
-        if tracked then
-            self.TrackingSpells[spellId] = { id=spellId, name=spellName, icon= spellIcon }
-            table.insert(self.TrackingSpellsNum, { id=spellId, name=spellName, icon= spellIcon })
-            self.TrackingSpellIcons[spellIcon] = spellId
-            count = count + 1
-        end
-    end
+			if tracked then
+				self.TrackingSpells[spellId] = { id=spellId, name=spellName, icon= spellIcon }
+				table.insert(self.TrackingSpellsNum, { id=spellId, name=spellName, icon= spellIcon })
+				self.TrackingSpellIcons[spellIcon] = spellId
+				count = count + 1
+			end
+		end
+	end
     self.NumTrackingTypes = count
     return self.TrackingSpells
 end
