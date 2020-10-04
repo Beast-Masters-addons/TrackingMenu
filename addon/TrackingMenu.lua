@@ -24,7 +24,7 @@ function TM_MiniMapTrackingDropDown_Initialize(_, level)
 		info.icon = nil;
 		info.arg1 = nil;
 		info.isNotRadio = false;
-		info.keepShownOnClick = true;
+		info.keepShownOnClick = false;
 		UIDropDownMenu_AddButton(info, level);
 
 		if (class == "HUNTER") then --only show hunter dropdown for hunters
@@ -57,7 +57,7 @@ function TM_MiniMapTrackingDropDown_Initialize(_, level)
 		info.icon = texture;
 		info.arg1 = id;
 		info.isNotRadio = false;
-		info.keepShownOnClick = true;
+		info.keepShownOnClick = false;
 		if ( category == "spell" ) then
 			info.tCoordLeft = 0.0625;
 			info.tCoordRight = 0.9;
