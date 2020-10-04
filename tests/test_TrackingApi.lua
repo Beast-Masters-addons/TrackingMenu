@@ -10,18 +10,21 @@ test.TrackingApi = _G['TrackingApi']
 
 
 function test:testGetTrackingInfo()
+    setTestClass('Hunter')
     self.TrackingApi:BuildSpellList()
     local name = GetTrackingInfo(1)
     lu.assertEquals(name, 'Track Beasts')
 end
 
 function test:testGetNumTrackingTypes()
+    setTestClass('Hunter')
     self.TrackingApi:BuildSpellList()
     local num = GetNumTrackingTypes()
-    lu.assertEquals(num, 2)
+    lu.assertEquals(num, 3)
 end
 
 function test:testSetTracking()
+    setTestClass('Hunter')
     self.TrackingApi:BuildSpellList()
     SetTracking(2)
     lu.assertEquals(_G['lastSpellName'], 'Track Humanoids')
@@ -40,13 +43,24 @@ function test:testGetCurrentTrackingNone()
     lu.assertEquals(spell, nil)
 end
 
-function test:testGetCurrentTracking()
+function test:testGetCurrentHunterTracking()
+    setTestClass('Hunter')
     self.TrackingApi:BuildSpellList()
     _G['currentTrackingTexture'] = 135942
     local name, icon, spell= self.TrackingApi:GetCurrentTracking()
     lu.assertEquals(name, 'Track Humanoids')
     lu.assertEquals(icon, 135942)
     lu.assertEquals(spell, 19883)
+end
+
+function test:testGetCurrentTracking()
+    setTestClass('Druid')
+    self.TrackingApi:BuildSpellList()
+    _G['currentTrackingTexture'] = 133939
+    local name, icon, spell= self.TrackingApi:GetCurrentTracking()
+    lu.assertEquals(name, 'Find Herbs')
+    lu.assertEquals(icon, 133939)
+    lu.assertEquals(spell, 2383)
 end
 
 function test:testIsCurrentTracking()

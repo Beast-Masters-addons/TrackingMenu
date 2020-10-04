@@ -1,24 +1,28 @@
 BOOKTYPE_SPELL = "spell"
 
 local spellBook = {}
-spellBook[42] = { "Disengage", "Rank 1", 781, 132294}
-spellBook[43] = { "Freezing Trap", "Rank 1", 1499, 135834}
-spellBook[44] = { "Immolation Trap", "Rank 1", 13795}
-spellBook[45] = { "Raptor Strike", "Rank 1", 2973}
-spellBook[46] = { "Raptor Strike", "Rank 2", 14260}
-spellBook[47] = { "Raptor Strike", "Rank 3", 14261}
-spellBook[48] = { "Track Beasts", "", 1494, 132238}
-spellBook[49] = { "Track Humanoids", "", 19883, 135942}
-spellBook[50] = { "Wing Clip", "Rank 1", 2974, 132309}
+local tabs = {}
+local testUnitClass
 
-function UnitClass(_)
-    return "Hunter", "HUNTER", 3
+function setTestClass(class)
+    testUnitClass = class
+    local file_spells = string.format('test_data/spells_%s.lua', class)
+    spellBook = loadfile(file_spells)()
+    local file_tabs = string.format('test_data/tabs_%s.lua', class)
+    tabs = loadfile(file_tabs)()
 end
 
-function GetSpellTabInfo(tab)
-    if tab == 4 then
-        return "Survival", 132215, 41, 9, false, 0, false
+function UnitClass(_)
+    if testUnitClass == 'Druid' then
+        return "Druid", "DRUID", 11
+    else
+        return "Hunter", "HUNTER", 3
     end
+end
+
+--name, texture, offset, numEntries, isGuild, offspecID = GetSpellTabInfo(tabIndex)
+function GetSpellTabInfo(tab)
+    return tabs[tab][1], tabs[tab][2], tabs[tab][3], tabs[tab][4], tabs[tab][5], tabs[tab][6], tabs[tab][7]
 end
 
 function GetSpellTexture(spellId)
@@ -33,6 +37,10 @@ function GetSpellTexture(spellId)
 end
 
 function GetSpellBookItemTexture(slotIndex, _)
+    if not spellBook[slotIndex] then
+        error('Invalid slotIndex: ' .. slotIndex)
+        return
+    end
     return spellBook[slotIndex][4]
 end
 
