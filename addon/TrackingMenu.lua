@@ -1,3 +1,10 @@
+local frame = CreateFrame("FRAME"); -- Need a frame to respond to events
+frame:RegisterEvent("ADDON_LOADED"); -- Fired when saved variables are loaded
+frame:RegisterEvent("SPELLS_CHANGED");
+frame:SetScript("OnEvent", function ()
+	TrackingApi:BuildSpellList()
+end);
+
 function TM_OnLoad(self)
 	TrackingApi:BuildSpellList()
 	MiniMapTrackingDropDown_OnLoad(self)
