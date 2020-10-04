@@ -3,7 +3,6 @@
 ## Author: datagutten
 ## Title: TrackingMenu
 ## Notes: Show tracking menu
-## Dependencies: LibStub
 ## SavedVariables: SpellList
 
 addon\TrackingApi.lua
