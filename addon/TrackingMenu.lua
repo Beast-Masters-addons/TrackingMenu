@@ -1,9 +1,4 @@
 function TM_OnLoad(self)
-	local _, myClass = UnitClass("player")
-	if not myClass == "HUNTER" then
-		print('TrackingMenu is only available for hunter tracking')
-		return
-	end
 	TrackingApi:BuildSpellList()
 	MiniMapTrackingDropDown_OnLoad(self)
 	TM_MiniMapTrackingDropDown_Initialize(TM_MiniMapTrackingDropDown, 1)
