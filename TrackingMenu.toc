@@ -4,6 +4,8 @@
 ## Title: TrackingMenu
 ## Notes: Show tracking menu
 ## SavedVariables: SpellList
+## X-Curse-Project-ID: 411216
+## X-WoWI-ID: 25697
 
 addon\TrackingApi.lua
 addon\TrackingMenu.lua
