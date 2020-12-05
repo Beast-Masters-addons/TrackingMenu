@@ -70,5 +70,8 @@ end
 
 function SetTracking(id, _)
     local spell = TrackingApi.TrackingSpellsNum[id]
+	if not spell then
+		error('Invalid spell ID: ' .. id)
+	end
     CastSpellByName(spell['name'])
 end
