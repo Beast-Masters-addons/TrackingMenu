@@ -17,8 +17,10 @@ script:
   - cd tests
   - lua -lluacov test_TrackingApi.lua
 
-after_success:
+after_script:
   - bash <(curl -s https://codecov.io/bash)
+
+after_success:
   - cd $TRAVIS_BUILD_DIR
   - curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash -s -- -g 1.13.6
 
