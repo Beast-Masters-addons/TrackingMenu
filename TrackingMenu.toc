@@ -1,4 +1,4 @@
-## Interface: 11306
+## Interface: 11403
 ## Version: @project-version@
 ## Author: datagutten
 ## Title: TrackingMenu
@@ -6,6 +6,7 @@
 ## SavedVariables: SpellList
 ## X-Curse-Project-ID: 411216
 ## X-WoWI-ID: 25697
+## X-Wago-ID: e56nQmN9
 
 addon\TrackingApi.lua
 addon\TrackingMenu.lua
